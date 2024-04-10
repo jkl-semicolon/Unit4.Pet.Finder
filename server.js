@@ -1,27 +1,28 @@
+import express from 'express';
+
 const pets = [
   {
     id: 0,
-    name: 'Mikan',
-    owner: 'Alex',
+    name: 'mikan',
+    owner: 'alex',
   },
   {
     id: 1,
-    name: 'Little_Kitty',
-    owner: 'Alex',
+    name: 'little_kitty',
+    owner: 'alex',
   },
   {
     id: 2,
-    name: 'Nevin',
-    owner: 'Vivian',
+    name: 'nevin',
+    owner: 'vivian',
   },
   {
     id: 3,
-    name: 'Jasper',
-    owner: 'Joyce',
+    name: 'jasper',
+    owner: 'joyce',
   },
 ];
 
-const express = require('express');
 const app = express();
 const PORT = 5000;
 
@@ -34,8 +35,8 @@ app.get('/api/v1/pets', (req, res) => {
 })
 
 app.get('/api/v1/pets/owner', (req, res) => {
-  const {owner} = req.query;
-  res.send(pets.filter(pet => pet.owner === owner))
+  let {owner} = req.query;
+  res.send(pets.filter(pet => pet.owner === owner.toLowerCase()))
 })
 
 app.get('/api/v1/pets/:name', (req, res) => {
